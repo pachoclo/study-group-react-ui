@@ -2,12 +2,9 @@
 
 - [React](https://reactjs.org/docs/getting-started.html)
 - [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-- [Material-UI](https://material-ui.com/)
 - [Redux](https://react-redux.js.org/)
   - [Fundamentals presentation](https://blog.isquaredsoftware.com/presentations/workshops/redux-fundamentals/react-redux.html#/)
 - [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
-- [Formik](https://jaredpalmer.com/formik/docs/overview)
-- [Yup](https://github.com/jquense/yup)
 - [Jest](https://jestjs.io/)
 - [Enzyme](https://github.com/airbnb/enzyme)
 
