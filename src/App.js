@@ -4,7 +4,7 @@ import history from './history'
 import Auth from './Auth/Auth'
 
 const Menu = ({ auth }) => (
-  <div>
+  <>
     {!auth.isAuthenticated() && <button onClick={() => auth.login()}>Login</button>}
     {auth.isAuthenticated() && <button onClick={() => auth.logout()}>Logout</button>}
 
@@ -16,13 +16,18 @@ const Menu = ({ auth }) => (
         <Link to="about">About</Link>
       </li>
     </ul>
-  </div>
+  </>
 )
 
 const Home = ({ auth }) => (
   <>
     <h2>Home</h2>
-    {auth.isAuthenticated() && <p>La casaa</p>}
+    {auth.isAuthenticated() && (
+      <>
+        <p>La casaa</p>
+        <p>{localStorage.getItem('accessToken')}</p>
+      </>
+    )}
     {!auth.isAuthenticated() && <p>Not logged In!!! Please login mr/mrs...</p>}
   </>
 )
@@ -35,25 +40,18 @@ const About = ({ auth }) => (
   </>
 )
 
+const auth = new Auth()
+
 class App extends Component {
-  auth = new Auth()
+  constructor() {
+    super()
+    this.auth = auth
+  }
 
   handleAuthentication = ({ location }) => {
     if (/access_token|id_token|error/.test(location.hash)) {
       this.auth.handleAuthentication()
     }
-  }
-
-  goTo = route => {
-    this.history.replace(`/${route}`)
-  }
-
-  login = () => {
-    this.auth.login()
-  }
-
-  logout = () => {
-    this.auth.logout()
   }
 
   componentDidMount() {

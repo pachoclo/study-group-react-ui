@@ -32,7 +32,9 @@ export default class Auth {
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+        console.log(JSON.stringify(authResult, null, 2))
         this.setClientSideCookie(authResult)
+        history.replace('/')
       } else if (err) {
         history.replace('/')
         console.log(err)
@@ -42,11 +44,11 @@ export default class Auth {
   }
 
   getAccessToken() {
-    return this.accessToken
+    return localStorage.getItem('accessToken')
   }
 
   getIdToken() {
-    return this.idToken
+    return localStorage.getItem('idToken')
   }
 
   setClientSideCookie(authResult) {
@@ -55,31 +57,28 @@ export default class Auth {
 
     // Set the time that the access token will expire at
     let expiresAt = authResult.expiresIn * 1000 + new Date().getTime()
-    this.accessToken = authResult.accessToken
-    this.idToken = authResult.idToken
-    this.expiresAt = expiresAt
-
-    // navigate to the home route
-    history.replace('/')
+    localStorage.setItem('accessToken', authResult.accessToken)
+    localStorage.setItem('idToken', authResult.idToken)
+    localStorage.setItem('expiresAt', expiresAt)
   }
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
+      console.log('[renewSession] checking session...')
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setClientSideCookie(authResult)
       } else if (err) {
+        console.error('[renewSession] failed.', err)
         this.logout()
-        console.log(err)
-        alert(`Could not get a new token (${err.error}: ${err.error_description}).`)
       }
     })
   }
 
   logout() {
     // Remove tokens and expiry time
-    this.accessToken = null
-    this.idToken = null
-    this.expiresAt = 0
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('idToken')
+    localStorage.removeItem('expiresAt')
 
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn')
@@ -91,7 +90,7 @@ export default class Auth {
   isAuthenticated() {
     // Check whether the current time is past the
     // access token's expiry time
-    let expiresAt = this.expiresAt
+    let expiresAt = localStorage.getItem('expiresAt')
     return new Date().getTime() < expiresAt
   }
 }
