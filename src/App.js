@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Router, Route, Link } from 'react-router-dom'
+import history from './history'
+import Auth from './Auth/Auth'
 
-const Menu = () => (
-  <div>
+const Menu = ({ auth }) => (
+  <>
+    {!auth.isAuthenticated() && <button onClick={() => auth.login()}>Login</button>}
+    {auth.isAuthenticated() && <button onClick={() => auth.logout()}>Logout</button>}
+
     <ul>
-      <li>
-        <Link to="login">Login</Link>
-      </li>
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -14,35 +16,68 @@ const Menu = () => (
         <Link to="about">About</Link>
       </li>
     </ul>
-  </div>
+  </>
 )
 
-const Home = () => (
+const Home = ({ auth }) => (
   <>
     <h2>Home</h2>
-    <p>La casaa</p>
-  </>
-)
-const About = () => (
-  <>
-    <h2>About</h2>
-    <p>(c) Study Groupssss weee</p>
+    {auth.isAuthenticated() && (
+      <>
+        <p>La casaa</p>
+        <p>{localStorage.getItem('accessToken')}</p>
+      </>
+    )}
+    {!auth.isAuthenticated() && <p>Not logged In!!! Please login mr/mrs...</p>}
   </>
 )
 
+const About = ({ auth }) => (
+  <>
+    <h2>About</h2>
+    {auth.isAuthenticated() && <p>(c) Study Groupssss weee</p>}
+    {!auth.isAuthenticated() && <p>Not logged In!!! Please login mr/mrs...</p>}
+  </>
+)
+
+const auth = new Auth()
+
 class App extends Component {
+  constructor() {
+    super()
+    this.auth = auth
+  }
+
+  handleAuthentication = ({ location }) => {
+    if (/access_token|id_token|error/.test(location.hash)) {
+      this.auth.handleAuthentication()
+    }
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      this.auth.renewSession()
+    }
+  }
+
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div className="App">
           <header>
-            <Menu />
+            <Menu auth={this.auth} />
           </header>
           <hr />
           <main>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" />
-            <Route path="/about" component={About} />
+            <Route exact path="/" render={props => <Home auth={this.auth} {...props} />} />
+            <Route path="/about" render={props => <About auth={this.auth} {...props} />} />
+            <Route
+              path="/callback"
+              render={props => {
+                this.handleAuthentication(props)
+                return <p>Authenticating...</p>
+              }}
+            />
           </main>
         </div>
       </Router>
