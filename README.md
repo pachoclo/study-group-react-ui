@@ -2,6 +2,7 @@
 
 - [React](https://reactjs.org/docs/getting-started.html)
 - [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 - [Redux](https://react-redux.js.org/)
   - [Fundamentals presentation](https://blog.isquaredsoftware.com/presentations/workshops/redux-fundamentals/react-redux.html#/)
 - [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
