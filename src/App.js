@@ -1,23 +1,8 @@
 import React, { Component } from 'react'
-import { Router, Route, Link } from 'react-router-dom'
+import { Router, Route } from 'react-router-dom'
 import history from './history'
 import Auth from './Auth/Auth'
-
-const Menu = ({ auth }) => (
-  <>
-    {!auth.isAuthenticated() && <button onClick={() => auth.login()}>Login</button>}
-    {auth.isAuthenticated() && <button onClick={() => auth.logout()}>Logout</button>}
-
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="about">About</Link>
-      </li>
-    </ul>
-  </>
-)
+import Header from './components/layout/Header'
 
 const Home = ({ auth }) => (
   <>
@@ -25,7 +10,8 @@ const Home = ({ auth }) => (
     {auth.isAuthenticated() && (
       <>
         <p>La casaa</p>
-        <p>{localStorage.getItem('accessToken')}</p>
+        <p>Access Token: {localStorage.getItem('accessToken')}</p>
+        <p>ID Token: {localStorage.getItem('idToken')}</p>
       </>
     )}
     {!auth.isAuthenticated() && <p>Not logged In!!! Please login mr/mrs...</p>}
@@ -64,10 +50,7 @@ class App extends Component {
     return (
       <Router history={history}>
         <div className="App">
-          <header>
-            <Menu auth={this.auth} />
-          </header>
-          <hr />
+          <Header auth={this.auth} />
           <main>
             <Route exact path="/" render={props => <Home auth={this.auth} {...props} />} />
             <Route path="/about" render={props => <About auth={this.auth} {...props} />} />
