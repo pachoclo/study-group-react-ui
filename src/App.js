@@ -1,8 +1,24 @@
 import React, { Component } from 'react'
-import { Router, Route } from 'react-router-dom'
+import { Router, Route, Link } from 'react-router-dom'
 import history from './history'
 import Auth from './Auth/Auth'
-import Header from './components/layout/Header'
+// import Header from './components/layout/Header'
+
+const Menu = ({ auth }) => (
+  <>
+    {!auth.isAuthenticated() && <button onClick={() => auth.login()}>Login</button>}
+    {auth.isAuthenticated() && <button onClick={() => auth.logout()}>Logout</button>}
+
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="about">About</Link>
+      </li>
+    </ul>
+  </>
+)
 
 const Home = ({ auth }) => (
   <>
@@ -50,7 +66,10 @@ class App extends Component {
     return (
       <Router history={history}>
         <div className="App">
-          <Header auth={this.auth} />
+          {/* <Header auth={this.auth} /> */}
+          <header>
+            <Menu auth={this.auth} />
+          </header>
           <main>
             <Route exact path="/" render={props => <Home auth={this.auth} {...props} />} />
             <Route path="/about" render={props => <About auth={this.auth} {...props} />} />
