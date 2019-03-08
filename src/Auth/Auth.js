@@ -1,6 +1,6 @@
-import history from '../history'
 import auth0 from 'auth0-js'
 import { AUTH_CONFIG } from './auth-config'
+import { Promise } from 'q'
 
 export default class Auth {
   accessToken
@@ -16,43 +16,34 @@ export default class Auth {
     scope: 'openid'
   })
 
-  constructor() {
-    this.login = this.login.bind(this)
-    this.logout = this.logout.bind(this)
-    this.handleAuthentication = this.handleAuthentication.bind(this)
-    this.isAuthenticated = this.isAuthenticated.bind(this)
-    this.getAccessToken = this.getAccessToken.bind(this)
-    this.getIdToken = this.getIdToken.bind(this)
-    this.renewSession = this.renewSession.bind(this)
-  }
-
-  login() {
+  login = () => {
     this.auth0.authorize()
   }
 
-  handleAuthentication() {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log(JSON.stringify(authResult, null, 2))
-        this.setClientSideCookie(authResult)
-        history.replace('/')
-      } else if (err) {
-        history.replace('/')
-        console.log(err)
-        alert(`Error: ${err.error}. Check the console for further details.`)
-      }
+  handleAuthentication = () => {
+    return new Promise((resolve, reject) => {
+      this.auth0.parseHash((err, authResult) => {
+        if (authResult && authResult.accessToken && authResult.idToken) {
+          this.setClientSideCookie(authResult)
+          resolve(true)
+        } else if (err) {
+          console.log(err)
+          alert(`Error: ${err.error}. Check the console for further details.`)
+          reject(false)
+        }
+      })
     })
   }
 
-  getAccessToken() {
+  getAccessToken = () => {
     return localStorage.getItem('accessToken')
   }
 
-  getIdToken() {
+  getIdToken = () => {
     return localStorage.getItem('idToken')
   }
 
-  setClientSideCookie(authResult) {
+  setClientSideCookie = authResult => {
     // Set isLoggedIn flag in localStorage
     localStorage.setItem('isLoggedIn', 'true')
 
@@ -63,7 +54,7 @@ export default class Auth {
     localStorage.setItem('expiresAt', expiresAt)
   }
 
-  renewSession() {
+  renewSession = () => {
     this.auth0.checkSession({}, (err, authResult) => {
       console.log('[renewSession] checking session...')
       if (authResult && authResult.accessToken && authResult.idToken) {
@@ -75,7 +66,7 @@ export default class Auth {
     })
   }
 
-  logout() {
+  logout = () => {
     // Remove tokens and expiry time
     localStorage.removeItem('accessToken')
     localStorage.removeItem('idToken')
@@ -83,12 +74,9 @@ export default class Auth {
 
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn')
-
-    // navigate to the home route
-    history.replace('/')
   }
 
-  isAuthenticated() {
+  isAuthenticated = () => {
     // Check whether the current time is past the
     // access token's expiry time
     let expiresAt = localStorage.getItem('expiresAt')

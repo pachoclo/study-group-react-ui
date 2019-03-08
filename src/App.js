@@ -1,59 +1,15 @@
 import React, { Component } from 'react'
-import { Router, Route, Link } from 'react-router-dom'
-import history from './history'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Auth from './Auth/Auth'
-// import Header from './components/layout/Header'
-
-const Menu = ({ auth }) => (
-  <>
-    {!auth.isAuthenticated() && <button onClick={() => auth.login()}>Login</button>}
-    {auth.isAuthenticated() && <button onClick={() => auth.logout()}>Logout</button>}
-
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="about">About</Link>
-      </li>
-    </ul>
-  </>
-)
-
-const Home = ({ auth }) => (
-  <>
-    <h2>Home</h2>
-    {auth.isAuthenticated() && (
-      <>
-        <p>La casaa</p>
-        <p>Access Token: {localStorage.getItem('accessToken')}</p>
-        <p>ID Token: {localStorage.getItem('idToken')}</p>
-      </>
-    )}
-    {!auth.isAuthenticated() && <p>Not logged In!!! Please login mr/mrs...</p>}
-  </>
-)
-
-const About = ({ auth }) => (
-  <>
-    <h2>About</h2>
-    {auth.isAuthenticated() && <p>(c) Study Groupssss weee</p>}
-    {!auth.isAuthenticated() && <p>Not logged In!!! Please login mr/mrs...</p>}
-  </>
-)
-
-const auth = new Auth()
+import Header from './components/layout/Header'
+import Home from './components/Home'
+import About from './components/About'
+import LoginCallback from './components/LoginCallback'
 
 class App extends Component {
   constructor() {
     super()
-    this.auth = auth
-  }
-
-  handleAuthentication = ({ location }) => {
-    if (/access_token|id_token|error/.test(location.hash)) {
-      this.auth.handleAuthentication()
-    }
+    this.auth = new Auth()
   }
 
   componentDidMount() {
@@ -64,24 +20,15 @@ class App extends Component {
 
   render() {
     return (
-      <Router history={history}>
-        <div className="App">
-          {/* <Header auth={this.auth} /> */}
-          <header>
-            <Menu auth={this.auth} />
-          </header>
+      <Router>
+        <>
+          <Header auth={this.auth} />
           <main>
             <Route exact path="/" render={props => <Home auth={this.auth} {...props} />} />
             <Route path="/about" render={props => <About auth={this.auth} {...props} />} />
-            <Route
-              path="/callback"
-              render={props => {
-                this.handleAuthentication(props)
-                return <p>Authenticating...</p>
-              }}
-            />
+            <Route path="/loginCallback" render={props => <LoginCallback auth={this.auth} {...props} />} />
           </main>
-        </div>
+        </>
       </Router>
     )
   }
