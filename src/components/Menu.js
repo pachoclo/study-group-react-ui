@@ -1,17 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { loginRequest, logoutRequest } from '../store/actions/authActions'
 
-const logout = (auth, history) => {
-  auth.logout()
-  history.push('/')
-}
-
-const Menu = ({ auth, history }) => {
+const Menu = ({ isAuthenticated, loginRequest, logoutRequest }) => {
   return (
     <>
-      {!auth.isAuthenticated() && <button onClick={() => auth.login()}>Login</button>}
-      {auth.isAuthenticated() && <button onClick={() => logout(auth, history)}>Logout</button>}
-
+      {!isAuthenticated && <button onClick={loginRequest}>Login</button>}
+      {isAuthenticated && <button onClick={logoutRequest}>Logout</button>}
       <ul>
         <li>
           <Link to="/">Home</Link>
@@ -24,4 +20,13 @@ const Menu = ({ auth, history }) => {
   )
 }
 
-export default Menu
+const mapStateToProps = ({ auth }) => ({
+  isAuthenticated: auth.authenticated
+})
+
+const actions = { loginRequest, logoutRequest }
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Menu)

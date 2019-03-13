@@ -1,1 +1,4 @@
-export const SAMPLE_ACTION_TYPE = 'SAMPLE_ACTION_TYPE'
+// auth
+export const LOGIN_REQUEST = 'LOGIN_REQUEST'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'

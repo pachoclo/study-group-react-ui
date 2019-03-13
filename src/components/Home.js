@@ -1,17 +1,24 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import {} from '../store/actions/authActions'
 
-const Home = ({ auth }) => (
+const Home = ({ isAuthenticated, profile }) => (
   <>
     <h2>Home</h2>
-    {auth.isAuthenticated() && (
+    {isAuthenticated && (
       <>
         <p>La casaa</p>
-        <p>Access Token: {localStorage.getItem('accessToken')}</p>
-        <p>ID Token: {localStorage.getItem('idToken')}</p>
+        <p>Profile:</p>
+        <pre> {JSON.stringify(profile, null, 2)}</pre>
       </>
     )}
-    {!auth.isAuthenticated() && <p>Not logged In!!! Please login mr/mrs...</p>}
+    {!isAuthenticated && <p>Not logged In!!! Please login mr/mrs...</p>}
   </>
 )
 
-export default Home
+const mapStateToProps = ({ auth }) => ({
+  isAuthenticated: auth.authenticated,
+  profile: auth.profile
+})
+
+export default connect(mapStateToProps)(Home)

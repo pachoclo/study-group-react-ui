@@ -1,37 +1,34 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Auth from './Auth/Auth'
-import Header from './components/layout/Header'
+import { connect } from 'react-redux'
+import { renewSession } from './store/actions/authActions'
+import authClient from './Auth/Auth'
+import Header from './components/Header'
 import Home from './components/Home'
 import About from './components/About'
 import LoginCallback from './components/LoginCallback'
 
-class App extends Component {
-  constructor() {
-    super()
-    this.auth = new Auth()
-  }
+function App({ renewSession }) {
+  useEffect(() => {
+    console.log('checking for open sessions...')
+    authClient.isLoggedIn() && renewSession()
+  })
 
-  componentDidMount() {
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      this.auth.renewSession()
-    }
-  }
-
-  render() {
-    return (
-      <Router>
-        <>
-          <Header auth={this.auth} />
-          <main>
-            <Route exact path="/" render={props => <Home auth={this.auth} {...props} />} />
-            <Route path="/about" render={props => <About auth={this.auth} {...props} />} />
-            <Route path="/loginCallback" render={props => <LoginCallback auth={this.auth} {...props} />} />
-          </main>
-        </>
-      </Router>
-    )
-  }
+  return (
+    <Router>
+      <>
+        <Header />
+        <main>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/loginCallback" component={LoginCallback} />
+        </main>
+      </>
+    </Router>
+  )
 }
 
-export default App
+export default connect(
+  null,
+  { renewSession }
+)(App)

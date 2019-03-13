@@ -1,14 +1,28 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { loginResponseHandler } from '../store/actions/authActions'
 
-const LoginCallback = ({ auth, location, history }) => {
-  if (/access_token|id_token|error/.test(location.hash)) {
-    auth
-      .handleAuthentication()
-      .then(() => history.push('/'))
-      .catch(() => history.push('/error'))
+const LoginCallback = ({ isAuthenticated, loginResponseHandler, location }) => {
+  if (isAuthenticated) {
+    return <Redirect to={'/'} push />
   }
 
-  return <p>Authenticating...</p>
+  if (/access_token|id_token|error/.test(location.hash)) {
+    loginResponseHandler()
+    return <p>Authenticating...</p>
+  }
 }
 
-export default LoginCallback
+const mapStateToProps = ({ auth }) => ({
+  isAuthenticated: auth.authenticated
+})
+
+const actions = {
+  loginResponseHandler
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(LoginCallback)

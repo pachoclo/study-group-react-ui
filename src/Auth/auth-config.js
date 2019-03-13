@@ -1,5 +1,8 @@
 export const AUTH_CONFIG = {
   domain: '',
   clientId: '',
-  callbackUrl: ''
+  callbackUrl: '',
+  responseType: '',
+  audience: '',
+  scope: ''
 }
