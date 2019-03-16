@@ -1,39 +1,65 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST } from '../actions/types'
+import * as auth from '../actions/authActions'
 import authClient from '../../Auth/Auth'
 
 const initialState = {
   authenticated: false,
-  fetching: false,
-  profile: {}
+  pending: false,
+  profile: {},
+  error: null
 }
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_REQUEST:
-      console.log('logging in')
+    case auth.LOGIN_REQUEST:
       authClient.login()
       return {
-        ...state,
         authenticated: false,
-        fetching: true,
-        profile: {}
+        pending: true,
+        profile: {},
+        error: null
       }
 
-    case LOGIN_SUCCESS:
-      console.log('logging success')
+    case auth.RENEW_SESSION:
+    case auth.LOGIN_RESPONSE:
       return {
-        ...state,
-        authenticated: true,
-        fetching: false,
-        profile: authClient.getProfile()
+        authenticated: false,
+        pending: true,
+        profile: {},
+        error: null
       }
 
-    case LOGOUT_REQUEST:
+    case auth.LOGIN_SUCCESS:
+      return {
+        authenticated: true,
+        pending: false,
+        profile: authClient.getProfile(),
+        error: null
+      }
+
+    case auth.LOGIN_ERROR:
       authClient.logout()
       return {
-        ...state,
+        pending: false,
         authenticated: false,
-        fetching: true
+        profile: {},
+        error: action.payload.error
+      }
+
+    case auth.LOGOUT:
+      authClient.logout()
+      return {
+        pending: false,
+        authenticated: false,
+        profile: {},
+        error: null
+      }
+
+    case auth.LOGOUT_ERROR:
+      return {
+        pending: false,
+        authenticated: false,
+        profile: {},
+        error: action.payload.error
       }
 
     default:

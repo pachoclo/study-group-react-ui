@@ -10,7 +10,7 @@ import LoginCallback from './components/LoginCallback'
 
 function App({ renewSession }) {
   useEffect(() => {
-    console.log('checking for open sessions...')
+    // if the user hasn't logged out, try to renew the session
     authClient.isLoggedIn() && renewSession()
   })
 
