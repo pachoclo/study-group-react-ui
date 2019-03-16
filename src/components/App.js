@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { renewSession } from './store/actions/authActions'
-import authClient from './Auth/Auth'
-import Header from './components/Header'
-import Home from './components/Home'
-import About from './components/About'
-import LoginCallback from './components/LoginCallback'
+import { renewSession } from '../store/actions/authActions'
+import authClient from '../Auth/Auth'
+import Header from './Header'
+import Home from './Home'
+import About from './About'
+import LoginCallback from './LoginCallback'
 
 function App({ renewSession }) {
   useEffect(() => {
