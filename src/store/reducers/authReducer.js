@@ -22,9 +22,8 @@ const authReducer = (state = initialState, action) => {
     case auth.RENEW_SESSION:
     case auth.LOGIN_RESPONSE:
       return {
-        authenticated: false,
+        ...state,
         pending: true,
-        profile: {},
         error: null
       }
 
@@ -39,8 +38,8 @@ const authReducer = (state = initialState, action) => {
     case auth.LOGIN_ERROR:
       authClient.logout()
       return {
-        pending: false,
         authenticated: false,
+        pending: false,
         profile: {},
         error: action.payload.error
       }
@@ -48,9 +47,8 @@ const authReducer = (state = initialState, action) => {
     case auth.LOGOUT:
       authClient.logout()
       return {
-        pending: false,
-        authenticated: false,
-        profile: {},
+        ...state,
+        pending: true,
         error: null
       }
 

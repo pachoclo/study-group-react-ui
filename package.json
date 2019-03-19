@@ -4,11 +4,14 @@
   "private": true,
   "dependencies": {
     "auth0-js": "^9.10.0",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.5",
+    "react-scripts": "^2.1.8",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },
@@ -31,7 +34,7 @@
   "prettier": {
     "semi": false,
     "singleQuote": true,
-    "printWidth": 120
+    "printWidth": 100
   },
   "devDependencies": {
     "enzyme": "^3.9.0",

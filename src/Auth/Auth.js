@@ -20,9 +20,7 @@ class Auth {
 
   logout = () => {
     localStorage.removeItem('isLoggedIn')
-    this.auth0.logout({
-      returnTo: 'http://localhost:3000'
-    })
+    this.auth0.logout({ returnTo: AUTH_CONFIG.loginReturnToUrl })
   }
 
   handleAuthentication = () => {

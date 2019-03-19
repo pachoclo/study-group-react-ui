@@ -2,11 +2,14 @@ import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { renewSession } from '../store/actions/authActions'
+import '../App.css'
 import authClient from '../Auth/Auth'
-import Header from './Header'
 import Home from './Home'
 import About from './About'
 import LoginCallback from './LoginCallback'
+import Navbar from './layout/Navbar'
+import Footer from './layout/Footer'
+import Landing from './layout/Landing'
 
 function App({ renewSession }) {
   useEffect(() => {
@@ -17,12 +20,14 @@ function App({ renewSession }) {
   return (
     <Router>
       <>
-        <Header />
-        <main>
+        <Navbar />
+        <Route exact path="/" component={Landing} />
+        <Route path="/loginCallback" component={LoginCallback} />
+        {/* <main>
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
-          <Route path="/loginCallback" component={LoginCallback} />
-        </main>
+        </main> */}
+        <Footer />
       </>
     </Router>
   )
