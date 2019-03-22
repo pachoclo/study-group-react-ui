@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { loginResponse } from '../store/actions/authActions'
+import { loginResponse } from '../redux/actions/authActions'
 
 const LoginCallback = ({ isAuthenticated, handleLoginResponse, location }) => {
   if (isAuthenticated) {

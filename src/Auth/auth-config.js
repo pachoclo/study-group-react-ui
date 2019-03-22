@@ -4,6 +4,6 @@ export const AUTH_CONFIG = {
   callbackUrl: 'http://localhost:3000/loginCallback',
   responseType: 'id_token token',
   audience: 'studygroupmeetings.com',
-  scope: 'openid profile',
+  scope: 'openid profile email',
   loginReturnToUrl: 'http://localhost:3000'
 }

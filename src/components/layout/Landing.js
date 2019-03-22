@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { preventDefault } from '../../utils'
-import { loginRequest } from '../../store/actions/authActions'
+import { preventDefault } from '../../util'
+import { loginRequest } from '../../redux/actions/authActions'
 
 const Landing = ({ isAuthenticated, loginRequest }) => {
   return (
@@ -15,7 +15,7 @@ const Landing = ({ isAuthenticated, loginRequest }) => {
               <p className="lead">
                 Gets you working with your peers pronto.
                 <br />
-                Setup meetings and organize your materials in one place.sda
+                Setup meetings and organize your materials in one place
               </p>
               {!isAuthenticated && (
                 <a

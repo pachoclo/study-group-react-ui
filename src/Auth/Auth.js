@@ -30,14 +30,14 @@ class Auth {
           this.setSession(authResult)
           resolve()
         } else if (err) {
-          console.log(err)
-          reject()
+          reject(err)
         }
       })
     })
   }
 
   setSession = authResult => {
+    console.log(`Auth: ${JSON.stringify(authResult, null, 2)}`)
     this.accessToken = authResult.accessToken
     this.idToken = authResult.idToken
     this.profile = authResult.idTokenPayload
@@ -54,9 +54,9 @@ class Auth {
           this.setSession(authResult)
           resolve()
         } else if (err) {
-          console.error('[renewSession] failed.', err)
+          console.error('[renewSession] failed.')
           this.logout()
-          reject()
+          reject(err)
         }
       })
     })

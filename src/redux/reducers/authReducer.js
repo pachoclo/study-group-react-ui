@@ -4,8 +4,7 @@ import authClient from '../../Auth/Auth'
 const initialState = {
   authenticated: false,
   pending: false,
-  profile: {},
-  error: null
+  profile: {}
 }
 
 const authReducer = (state = initialState, action) => {
@@ -15,49 +14,36 @@ const authReducer = (state = initialState, action) => {
       return {
         authenticated: false,
         pending: true,
-        profile: {},
-        error: null
+        profile: {}
       }
 
     case auth.RENEW_SESSION:
     case auth.LOGIN_RESPONSE:
       return {
         ...state,
-        pending: true,
-        error: null
+        pending: true
       }
 
     case auth.LOGIN_SUCCESS:
       return {
         authenticated: true,
         pending: false,
-        profile: authClient.getProfile(),
-        error: null
+        profile: action.payload
       }
 
     case auth.LOGIN_ERROR:
-      authClient.logout()
+    case auth.LOGOUT_ERROR:
       return {
         authenticated: false,
         pending: false,
-        profile: {},
-        error: action.payload.error
+        profile: {}
       }
 
     case auth.LOGOUT:
       authClient.logout()
       return {
         ...state,
-        pending: true,
-        error: null
-      }
-
-    case auth.LOGOUT_ERROR:
-      return {
-        pending: false,
-        authenticated: false,
-        profile: {},
-        error: action.payload.error
+        pending: true
       }
 
     default:

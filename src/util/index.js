@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 /**
  * @returns a wrapper function around the eventHandler
  *
@@ -7,4 +9,12 @@
 export const preventDefault = eventHandler => e => {
   e.preventDefault()
   eventHandler(e)
+}
+
+export const setAuthToken = token => {
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = token
+  } else {
+    delete axios.defaults.headers.common['Authorization']
+  }
 }

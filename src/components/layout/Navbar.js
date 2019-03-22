@@ -1,15 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loginRequest, logoutRequest } from '../../store/actions/authActions'
-import { preventDefault } from '../../utils'
+import { loginRequest, logoutRequest } from '../../redux/actions/authActions'
+import { preventDefault } from '../../util'
+import { Link } from 'react-router-dom'
 
 const Navbar = ({ isAuthenticated, loginRequest, logoutRequest, avatarUrl, nickname }) => (
-  <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+  <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
     <div className="container">
-      <a className="navbar-brand" href="landing.html">
+      <Link className="navbar-brand" to="/">
         StudyGroup
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -23,7 +24,7 @@ const Navbar = ({ isAuthenticated, loginRequest, logoutRequest, avatarUrl, nickn
         <ul className="navbar-nav ml-auto">
           {!isAuthenticated && (
             <li className="nav-item">
-              <a className="nav-link" medium href="/login" onClick={preventDefault(loginRequest)}>
+              <a className="nav-link" href="/login" onClick={preventDefault(loginRequest)}>
                 Login
               </a>
             </li>
@@ -31,17 +32,32 @@ const Navbar = ({ isAuthenticated, loginRequest, logoutRequest, avatarUrl, nickn
           {isAuthenticated && (
             <>
               <li className="nav-item">
-                <a
-                  className="nav-link small"
-                  href="/logout"
-                  onClick={preventDefault(logoutRequest)}
-                >
-                  Logout
-                </a>
+                <Link className="nav-link" to="/groups">
+                  Groups
+                </Link>
               </li>
-              <li className="nav-item">
-                <img src={avatarUrl} alt={nickname} className="rounded-circle avatar-img mt-1" />
-              </li>
+              <div className="dropdown">
+                <img
+                  src={avatarUrl}
+                  alt={nickname}
+                  className="rounded-circle avatar-img"
+                  id="dropdownMenu2"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                />
+                <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <h6 className="dropdown-header">{nickname}</h6>
+                  <div className="dropdown-divider" />
+                  <a
+                    className="dropdown-item"
+                    href="/logout"
+                    onClick={preventDefault(logoutRequest)}
+                  >
+                    Logout
+                  </a>
+                </div>
+              </div>
             </>
           )}
         </ul>
