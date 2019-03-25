@@ -16,10 +16,6 @@ img {
   padding-top: 80px;
 }
 
-.error-alert {
-  /* margin-bottom */
-}
-
 .dark-overlay {
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
@@ -49,6 +45,7 @@ img {
   cursor: pointer;
   opacity: 1;
 }
+
 .avatar-img:hover {
   opacity: 0.8;
 }

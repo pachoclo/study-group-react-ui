@@ -1,14 +1,14 @@
 import { GET_ERRORS } from '../actions/errorActions'
 
-const initialState = {
-  err: '',
-  followUp: ''
-}
+const initialState = {}
 
 const errorReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ERRORS:
-      return action.payload
+      return {
+        err: action.payload.err,
+        followUp: action.payload.followUp
+      }
     default:
       return state
   }

@@ -7,7 +7,7 @@ import '../App.css'
 import authClient from '../Auth/Auth'
 import LoginCallback from './LoginCallback'
 import Navbar from './layout/Navbar'
-import Error from './layout/Error'
+import ErrorAlert from './layout/ErrorAlert'
 import Landing from './layout/Landing'
 
 function App({ renewSession, error }) {
@@ -21,7 +21,7 @@ function App({ renewSession, error }) {
       <>
         <Navbar />
         <div className="{//container}">
-          {error.err && <Error error="error.err" followUp="error.followUp" />}
+          {error.err && <ErrorAlert error="error.err" followUp="error.followUp" />}
           <Route exact path="/" component={Landing} />
           {/* <Route exact path="/dashboard" component={Dashboard}  */}
           <Route path="/loginCallback" component={LoginCallback} />
