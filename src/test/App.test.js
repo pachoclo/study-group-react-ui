@@ -4,7 +4,7 @@ import App from '../components/App'
 import { Provider } from 'react-redux'
 import store from '../redux/store'
 
-it('renders without crashing', () => {
+it.skip('renders without crashing', () => {
   const div = document.createElement('div')
   ReactDOM.render(
     <Provider store={store}>

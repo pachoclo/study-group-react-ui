@@ -16,7 +16,9 @@ class Auth {
     scope: AUTH_CONFIG.scope
   })
 
-  login = () => this.auth0.authorize()
+  login = () => {
+    this.auth0.authorize()
+  }
 
   logout = () => {
     localStorage.removeItem('isLoggedIn')
@@ -26,12 +28,14 @@ class Auth {
   handleAuthentication = () => {
     return new Promise((resolve, reject) => {
       this.auth0.parseHash((err, authResult) => {
-        if (authResult && authResult.accessToken && authResult.idToken) {
+        if (err) {
+          reject(err)
+        } else if (authResult && authResult.accessToken && authResult.idToken) {
           this.setSession(authResult)
           resolve()
-        } else if (err) {
-          reject(err)
         }
+
+        reject('auth0 failed handling auth')
       })
     })
   }

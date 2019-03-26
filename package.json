@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "auth0-js": "^9.10.0",
+    "auth0-js": "^9.10.1",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "jquery": "^3.3.1",
@@ -38,6 +38,7 @@
     "printWidth": 100
   },
   "devDependencies": {
+    "@types/jest": "^24.0.11",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0"
   },
