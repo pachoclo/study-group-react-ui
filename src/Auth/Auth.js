@@ -34,7 +34,6 @@ class Auth {
           this.setSession(authResult)
           resolve()
         }
-
         reject('auth0 failed handling auth')
       })
     })
@@ -53,15 +52,14 @@ class Auth {
     return new Promise((resolve, reject) => {
       this.auth0.checkSession({}, (err, authResult) => {
         console.log('[renewSession] renewing...')
-        if (authResult && authResult.accessToken && authResult.idToken) {
+        if (err) {
+          reject(`[renewSession] failed. ${err}`)
+        } else if (authResult && authResult.accessToken && authResult.idToken) {
           console.log('[renewSession] success.')
           this.setSession(authResult)
           resolve()
-        } else if (err) {
-          console.error('[renewSession] failed.')
-          this.logout()
-          reject(err)
         }
+        reject('[renewSession] failed. Empty authResult from Auth0.')
       })
     })
   }
