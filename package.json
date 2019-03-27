@@ -22,7 +22,7 @@
     "test": "react-scripts test --silent",
     "coverage": "react-scripts test --coverage --silent",
     "cov": "react-scripts test --coverage --silent",
-    "coveralls": "react-scripts test --coverage && cat ./tests/coverage/lcov.info | coveralls",
+    "coveralls": "react-scripts test --coverage && cat ./coverage/lcov.info | coveralls",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
