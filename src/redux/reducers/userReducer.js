@@ -1,4 +1,4 @@
-import { GET_USER, SET_USER, USER_ERROR } from '../actions/userActions'
+import { FETCH_USER, SET_USER, USER_ERROR } from '../actions/userActions'
 
 const initialState = {
   fetching: false,
@@ -7,7 +7,7 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_USER:
+    case FETCH_USER:
       return {
         fetching: true
       }
