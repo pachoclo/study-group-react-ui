@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getErrors } from '../actions/errorActions'
 
-export const GET_USER = '[user] GET'
+export const FETCH_USER = '[user] FETCH'
 export const USER_ERROR = '[user] USER_ERROR'
 export const SET_USER = '[user] SET'
 
@@ -15,9 +15,9 @@ export const userError = () => ({
 })
 
 // thunks
-export const getUser = () => dispatch => {
+export const fetchUser = () => dispatch => {
   dispatch({
-    type: GET_USER
+    type: FETCH_USER
   })
   axios
     .get('/api/user', {})
