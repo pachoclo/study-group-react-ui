@@ -1,85 +1,80 @@
 import auth0 from 'auth0-js'
 import { AUTH_CONFIG } from './auth-config'
-import { Promise } from 'q'
 
-export default class Auth {
+class Auth {
   accessToken
   idToken
   expiresAt
+  profile
 
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
     clientID: AUTH_CONFIG.clientId,
     redirectUri: AUTH_CONFIG.callbackUrl,
-    audience: 'studygroupmeetings.com',
-    responseType: 'token id_token',
-    scope: 'openid'
+    audience: AUTH_CONFIG.audience,
+    responseType: AUTH_CONFIG.responseType,
+    scope: AUTH_CONFIG.scope
   })
 
   login = () => {
     this.auth0.authorize()
   }
 
+  logout = () => {
+    localStorage.removeItem('isLoggedIn')
+    this.auth0.logout({ returnTo: AUTH_CONFIG.loginReturnToUrl })
+  }
+
   handleAuthentication = () => {
     return new Promise((resolve, reject) => {
       this.auth0.parseHash((err, authResult) => {
-        if (authResult && authResult.accessToken && authResult.idToken) {
-          this.setClientSideCookie(authResult)
-          resolve(true)
-        } else if (err) {
-          console.log(err)
-          alert(`Error: ${err.error}. Check the console for further details.`)
-          reject(false)
+        if (err) {
+          reject(err)
+        } else if (authResult && authResult.accessToken && authResult.idToken) {
+          this.setSession(authResult)
+          resolve()
         }
+        reject('auth0 failed handling auth')
       })
     })
   }
 
-  getAccessToken = () => {
-    return localStorage.getItem('accessToken')
-  }
-
-  getIdToken = () => {
-    return localStorage.getItem('idToken')
-  }
-
-  setClientSideCookie = authResult => {
-    // Set isLoggedIn flag in localStorage
+  setSession = authResult => {
+    console.log(`Auth: ${JSON.stringify(authResult, null, 2)}`)
+    this.accessToken = authResult.accessToken
+    this.idToken = authResult.idToken
+    this.profile = authResult.idTokenPayload
+    this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime()
     localStorage.setItem('isLoggedIn', 'true')
-
-    // Set the time that the access token will expire at
-    let expiresAt = authResult.expiresIn * 1000 + new Date().getTime()
-    localStorage.setItem('accessToken', authResult.accessToken)
-    localStorage.setItem('idToken', authResult.idToken)
-    localStorage.setItem('expiresAt', expiresAt)
   }
 
   renewSession = () => {
-    this.auth0.checkSession({}, (err, authResult) => {
-      console.log('[renewSession] checking session...')
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setClientSideCookie(authResult)
-      } else if (err) {
-        console.error('[renewSession] failed.', err)
-        this.logout()
-      }
+    return new Promise((resolve, reject) => {
+      this.auth0.checkSession({}, (err, authResult) => {
+        console.log('[renewSession] renewing...')
+        if (err) {
+          reject(`[renewSession] failed. ${err}`)
+        } else if (authResult && authResult.accessToken && authResult.idToken) {
+          console.log('[renewSession] success.')
+          this.setSession(authResult)
+          resolve()
+        }
+        reject('[renewSession] failed. Empty authResult from Auth0.')
+      })
     })
   }
 
-  logout = () => {
-    // Remove tokens and expiry time
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('idToken')
-    localStorage.removeItem('expiresAt')
+  isAuthenticated = () => new Date().getTime() < this.expiresAt
 
-    // Remove isLoggedIn flag from localStorage
-    localStorage.removeItem('isLoggedIn')
-  }
+  isLoggedIn = () => localStorage.getItem('isLoggedIn') === 'true'
 
-  isAuthenticated = () => {
-    // Check whether the current time is past the
-    // access token's expiry time
-    let expiresAt = localStorage.getItem('expiresAt')
-    return new Date().getTime() < expiresAt
-  }
+  getAccessToken = () => this.accessToken
+
+  getIdToken = () => this.idToken
+
+  getProfile = () => this.profile
 }
+
+const auth0Client = new Auth()
+
+export default auth0Client

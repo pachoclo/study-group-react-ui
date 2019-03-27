@@ -1,14 +1,35 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { loginResponse } from '../redux/actions/authActions'
 
-const LoginCallback = ({ auth, location, history }) => {
-  if (/access_token|id_token|error/.test(location.hash)) {
-    auth
-      .handleAuthentication()
-      .then(() => history.push('/'))
-      .catch(() => history.push('/error'))
+const LoginCallback = ({ isAuthenticated, handleLoginResponse, location }) => {
+  if (isAuthenticated) {
+    return <Redirect to={'/'} push />
   }
 
-  return <p>Authenticating...</p>
+  if (/access_token|id_token|error/.test(location.hash)) {
+    handleLoginResponse()
+    return <p>Authenticating...</p>
+  }
 }
 
-export default LoginCallback
+LoginCallback.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  handleLoginResponse: PropTypes.func,
+  location: PropTypes.object
+}
+
+const mapStateToProps = ({ auth }) => ({
+  isAuthenticated: auth.authenticated
+})
+
+const actions = {
+  handleLoginResponse: loginResponse
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(LoginCallback)

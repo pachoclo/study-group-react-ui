@@ -1,5 +1,9 @@
 export const AUTH_CONFIG = {
-  domain: '',
-  clientId: '',
-  callbackUrl: ''
+  domain: 'studygroupmeetings.auth0.com',
+  clientId: 'VGnBhiFYhemHHVjLfBxAc5jAPqIPDMbp',
+  callbackUrl: 'http://localhost:3000/loginCallback',
+  responseType: 'id_token token',
+  audience: 'studygroupmeetings.com',
+  scope: 'openid profile email',
+  loginReturnToUrl: 'http://localhost:3000'
 }
