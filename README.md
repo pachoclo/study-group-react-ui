@@ -63,4 +63,4 @@ Your app is ready to be deployed!
 ```bash
 > docker run --rm -p 3000:80 studygroups-ui
 ```
-→ Access the UI at [http://localhost:3000](http://localhost:3000)🖥
+→ Access the UI at [http://localhost:3000](http://localhost:3000) 🙌
