@@ -23,6 +23,7 @@ describe('Util functions Test', () => {
 
   describe('setAuthToken', () => {
     jest.mock('axios')
+
     it("should set axios' Authorization header if a token is given", () => {
       const superToken = 'elSuperAuthToken'
       setAuthToken(superToken)
