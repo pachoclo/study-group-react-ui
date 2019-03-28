@@ -4,15 +4,12 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { loginResponse } from '../redux/actions/authActions'
 
-export const LoginCallback = ({ isAuthenticated, handleLoginResponse, location }) => {
-  if (isAuthenticated) {
-    return <Redirect to={'/'} push />
-  }
-
-  if (/access_token|id_token|error/.test(location.hash)) {
+export const LoginCallback = ({ isAuthenticated = true, handleLoginResponse, location }) => {
+  if (!isAuthenticated && /access_token|id_token|error/.test(location.hash)) {
     handleLoginResponse()
     return <p>Authenticating...</p>
   }
+  return <Redirect to={'/'} push />
 }
 
 LoginCallback.propTypes = {
