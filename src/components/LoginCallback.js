@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { loginResponse } from '../redux/actions/authActions'
 
-const LoginCallback = ({ isAuthenticated, handleLoginResponse, location }) => {
+export const LoginCallback = ({ isAuthenticated, handleLoginResponse, location }) => {
   if (isAuthenticated) {
     return <Redirect to={'/'} push />
   }
