@@ -8,4 +8,8 @@ install:
   - npm update
 script:
   - npm run coveralls
+after_success:
+  branches:
+    only:
+      - master
   - npm run build
