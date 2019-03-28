@@ -9,7 +9,8 @@ install:
 script:
   - npm run coveralls
 after_success:
+  - npm run build
   branches:
     only:
       - master
-  - npm run build
+  
