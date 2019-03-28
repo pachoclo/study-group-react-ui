@@ -53,11 +53,11 @@ Your app is ready to be deployed!
 
 ### build
 ```bash
-> docker build -t study-group-ui .
+> docker build -t studygroups-ui .
 ```
 
 ### run
 ```bash
-> docker run --rm -p 3000:80 study-group-ui
+> docker run --rm -p 3000:80 studygroups-ui
 ```
 -> access the UI at http://localhost:3000
