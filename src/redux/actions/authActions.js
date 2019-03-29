@@ -1,6 +1,7 @@
 import authClient from '../../Auth/Auth'
 import { setAuthToken } from '../../util'
 import { getErrors } from '../actions/errorActions'
+import { setLoader } from '../actions/loaderActions'
 
 export const LOGIN_REQUEST = '[auth] LOGIN_REQUEST'
 export const LOGIN_RESPONSE = '[auth] LOGIN_RESPONSE'
@@ -39,6 +40,7 @@ export const renewSessionError = () => ({
 // thunks
 export const loginResponse = () => dispatch => {
   dispatch({ type: LOGIN_RESPONSE })
+  dispatch(setLoader(true, 5))
   authClient
     .handleAuthentication()
     .then(() => {
@@ -49,10 +51,12 @@ export const loginResponse = () => dispatch => {
       dispatch(loginError())
       dispatch(getErrors(err))
     })
+    .finally(() => dispatch(setLoader(false)))
 }
 
 export const renewSession = () => dispatch => {
   dispatch({ type: RENEW_SESSION })
+  dispatch(setLoader(true, 5))
   authClient
     .renewSession()
     .then(() => {
@@ -71,4 +75,5 @@ export const renewSession = () => dispatch => {
       dispatch(renewSessionError())
       dispatch(getErrors(err))
     })
+    .finally(() => dispatch(setLoader(false)))
 }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { preventDefault } from '../../util'
 import { loginRequest } from '../../redux/actions/authActions'
 
-const Landing = ({ isAuthenticated, loginRequest }) => {
+const Landing = ({ isAuthenticated, loginRequest, loading }) => {
   return (
     <div className="landing">
       <div className="dark-overlay landing-inner text-light">
@@ -17,7 +17,7 @@ const Landing = ({ isAuthenticated, loginRequest }) => {
                 <br />
                 Setup meetings and organize your materials in one place
               </p>
-              {!isAuthenticated && (
+              {!isAuthenticated && !loading && (
                 <a
                   href="login.html"
                   className="btn btn-lg btn-info mt-5"
@@ -34,13 +34,15 @@ const Landing = ({ isAuthenticated, loginRequest }) => {
   )
 }
 
-const mapStateToProps = ({ auth }) => ({
-  isAuthenticated: auth.authenticated
+const mapStateToProps = ({ auth, loader }) => ({
+  isAuthenticated: auth.authenticated,
+  loading: loader.loading
 })
 
 Landing.propTypes = {
   isAuthenticated: PropTypes.bool,
-  loginRequest: PropTypes.func
+  loginRequest: PropTypes.func,
+  loading: PropTypes.bool
 }
 
 export default connect(
