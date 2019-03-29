@@ -1,4 +1,4 @@
-import authReducer from '../../../redux/reducers/errorReducer'
+import errorReducer from '../../../redux/reducers/errorReducer'
 import * as errorActions from '../../../redux/actions/errorActions'
 
 describe('authReducer Test', () => {
@@ -8,6 +8,6 @@ describe('authReducer Test', () => {
       followUp: 'el FollowUp'
     }
     const action = errorActions.getErrors('el Error', 'el FollowUp')
-    expect(authReducer(null, action)).toEqual(expectedState)
+    expect(errorReducer(null, action)).toEqual(expectedState)
   })
 })
