@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { loginResponse } from '../redux/actions/authActions'
+import Landing from './layout/Landing'
 
 export const LoginCallback = ({ isAuthenticated = true, handleLoginResponse, location }) => {
   if (!isAuthenticated && /access_token|id_token|error/.test(location.hash)) {
     handleLoginResponse()
-    return <p>Authenticating...</p>
+    return <Landing />
   }
   return <Redirect to={'/'} push />
 }

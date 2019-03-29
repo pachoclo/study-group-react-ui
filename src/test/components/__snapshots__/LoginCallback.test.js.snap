@@ -7,8 +7,4 @@ exports[`LoginCallback Test should render a redirect if the user is authenticate
 />
 `;
 
-exports[`LoginCallback Test should render correctly with default state 1`] = `
-<p>
-  Authenticating...
-</p>
-`;
+exports[`LoginCallback Test should render correctly with default state 1`] = `<Connect(Landing) />`;

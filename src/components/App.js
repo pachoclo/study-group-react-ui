@@ -9,6 +9,7 @@ import LoginCallback from './LoginCallback'
 import Navbar from './layout/Navbar'
 import ErrorAlert from './layout/ErrorAlert'
 import Landing from './layout/Landing'
+import TopLevelLoader from './TopLevelLoader'
 
 function App({ renewSession, error }) {
   useEffect(() => {
@@ -20,10 +21,10 @@ function App({ renewSession, error }) {
     <Router>
       <>
         <Navbar />
+        <TopLevelLoader />
         <div className="{//container}">
-          {error.err && <ErrorAlert error="error.err" followUp="error.followUp" />}
+          {error.err && <ErrorAlert error={error.err} followUp={error.followUp} />}
           <Route exact path="/" component={Landing} />
-          {/* <Route exact path="/dashboard" component={Dashboard}  */}
           <Route path="/loginCallback" component={LoginCallback} />
         </div>
       </>
@@ -32,6 +33,7 @@ function App({ renewSession, error }) {
 }
 
 Error.propTypes = {
+  renewSession: PropTypes.func,
   error: PropTypes.object
 }
 
