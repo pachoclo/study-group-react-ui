@@ -10,7 +10,10 @@ script:
   - npm run coveralls
 after_success:
   - npm run build
-#   branches:
-#     only:
-#       - master
-  
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: build
+  on:
+    branch: master
