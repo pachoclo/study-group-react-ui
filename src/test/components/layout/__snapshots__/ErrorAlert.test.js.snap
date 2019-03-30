@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorAlert Test should render correctly 1`] = `
+<div
+  className="alert alert-danger alert-dismissible mb-0"
+  role="alert"
+>
+  <i
+    className="icon-left fas fa-exclamation-triangle mr-3"
+  />
+  <strong />
+   
+  <span
+    className="ml-2"
+  />
+  <button
+    aria-label="Close"
+    className="close"
+    data-dismiss="alert"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+    >
+      ×
+    </span>
+  </button>
+</div>
+`;
