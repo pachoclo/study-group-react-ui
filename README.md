@@ -8,15 +8,15 @@
 
 ## Tech Stack
 
--  [React](https://reactjs.org/docs/getting-started.html)
--  [React Hooks](https://reactjs.org/docs/hooks-intro.html)
--  [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
--  [Redux](https://react-redux.js.org/)
--  [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
--  [Jest](https://jestjs.io/)
--  [Enzyme](https://github.com/airbnb/enzyme)
--  [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
--  [Auth0](https://github.com/auth0/auth0.js#readme)
+  - [React](https://reactjs.org/docs/getting-started.html)
+  - [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+  - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
+  - [Redux](https://react-redux.js.org/)
+  - [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
+  - [Jest](https://jestjs.io/)
+  - [Enzyme](https://github.com/airbnb/enzyme)
+  - [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
+  - [Auth0](https://github.com/auth0/auth0.js#readme)
 
 ---
 
