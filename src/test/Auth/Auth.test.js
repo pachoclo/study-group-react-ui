@@ -43,7 +43,7 @@ describe('Auth Class Test', () => {
       authClient.auth0.parseHash = jest.fn(cb => cb(null, null))
       return authClient
         .handleAuthentication()
-        .catch(err => expect(err).toEqual('auth0 failed handling auth'))
+        .catch(err => expect(err).toEqual('auth0 failed handling authentication'))
     })
   })
 
