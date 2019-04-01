@@ -8,7 +8,7 @@ describe('TopLevelLoader Test', () => {
   })
 
   it('should render correctly when loading set to true', () => {
-    expect(shallow(<TopLevelLoader loading={true} />)).toMatchSnapshot()
+    expect(shallow(<TopLevelLoader loading />)).toMatchSnapshot()
   })
 
   it('should render a fragment when loading set to false', () => {

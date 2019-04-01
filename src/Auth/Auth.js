@@ -30,11 +30,12 @@ class Auth {
       this.auth0.parseHash((err, authResult) => {
         if (err) {
           reject(err)
-        } else if (authResult && authResult.accessToken && authResult.idToken) {
+        }
+        if (authResult && authResult.accessToken && authResult.idToken) {
           this.setSession(authResult)
           resolve()
         }
-        reject('auth0 failed handling auth')
+        reject('auth0 failed handling authentication')
       })
     })
   }

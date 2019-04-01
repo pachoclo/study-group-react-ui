@@ -20,19 +20,19 @@ export const TopLevelLoader = ({ loading, intervalMillis = defaults.intervalMill
       newProgress <= 100 && setProgress(newProgress)
     }, intervalMillis)
 
-    return function cleanUp() {
+    return function cleanUp () {
       clearInterval(intervalId)
     }
   })
 
   return (
-    <div className="progress" style={{ height: '4px', backgroundColor: 'gray', borderRadius: 0 }}>
+    <div className='progress' style={{ height: '4px', backgroundColor: 'gray', borderRadius: 0 }}>
       <div
-        className="progress-bar progress-bar-striped progress-bar-animated bg-warning"
-        role="progressbar"
+        className='progress-bar progress-bar-striped progress-bar-animated bg-warning'
+        role='progressbar'
         aria-valuenow={progress}
-        aria-valuemin="0"
-        aria-valuemax="100"
+        aria-valuemin='0'
+        aria-valuemax='100'
         style={{ width: `${progress}%` }}
       />
     </div>
