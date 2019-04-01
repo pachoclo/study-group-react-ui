@@ -11,12 +11,7 @@ const Navbar = ({ isAuthenticated, loginRequest, logoutRequest, avatarUrl, nickn
       <Link className='navbar-brand' to='/'>
         StudyGroup
       </Link>
-      <button
-        className='navbar-toggler'
-        type='button'
-        data-toggle='collapse'
-        data-target='#mobile-nav'
-      >
+      <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#mobile-nav'>
         <span className='navbar-toggler-icon' />
       </button>
 
@@ -49,11 +44,7 @@ const Navbar = ({ isAuthenticated, loginRequest, logoutRequest, avatarUrl, nickn
                 <div className='dropdown-menu' aria-labelledby='dropdownMenu2'>
                   <h6 className='dropdown-header'>{nickname}</h6>
                   <div className='dropdown-divider' />
-                  <a
-                    className='dropdown-item'
-                    href='/logout'
-                    onClick={preventDefault(logoutRequest)}
-                  >
+                  <a className='dropdown-item' href='/logout' onClick={preventDefault(logoutRequest)}>
                     Logout
                   </a>
                 </div>

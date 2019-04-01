@@ -1,3 +1,5 @@
+/* global localStorage */
+
 import authClient from '../../Auth/Auth'
 import { setupMockLocalStorage } from '../testUtils'
 
@@ -35,8 +37,9 @@ describe('Auth Class Test', () => {
     })
 
     it('should reject on authentication error', () => {
-      authClient.auth0.parseHash = jest.fn(cb => cb('el error'))
-      return authClient.handleAuthentication().catch(err => expect(err).toEqual('el error'))
+      const expectedError = new Error('el error')
+      authClient.auth0.parseHash = jest.fn(cb => cb(expectedError))
+      return authClient.handleAuthentication().catch(err => expect(err).toEqual(expectedError))
     })
 
     it('should reject on session renewal with empty authResult', () => {
@@ -78,17 +81,15 @@ describe('Auth Class Test', () => {
     })
 
     it('should reject on session renewal error', () => {
-      authClient.auth0.checkSession = jest.fn((_, cb) => cb('el error'))
-      return authClient
-        .renewSession()
-        .catch(err => expect(err).toEqual('[renewSession] failed. el error'))
+      const expectedError = new Error('Auth0 errorrr')
+      authClient.auth0.checkSession = jest.fn((_, cb) => cb(expectedError))
+      return authClient.renewSession().catch(err => expect(err).toEqual(expectedError))
     })
 
     it('should reject on session renewal with empty authResult', () => {
+      const expectedError = new Error('[renewSession] failed. Empty authResult from Auth0.')
       authClient.auth0.checkSession = jest.fn((_, cb) => cb(null, null))
-      return authClient
-        .renewSession()
-        .catch(err => expect(err).toEqual('[renewSession] failed. Empty authResult from Auth0.'))
+      return authClient.renewSession().catch(err => expect(err).toEqual(expectedError))
     })
   })
 })

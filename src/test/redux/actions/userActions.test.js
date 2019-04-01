@@ -50,7 +50,7 @@ describe('User Action creators', () => {
     })
 
     it('should dispatch USER_ERROR & getErrors on Failure', async () => {
-      const elPromise = Promise.reject('axios is being naughty')
+      const elPromise = Promise.reject(new Error('axios is being naughty'))
       axios.get = jest.fn(url => elPromise)
 
       const dispatchMock = jest.fn()

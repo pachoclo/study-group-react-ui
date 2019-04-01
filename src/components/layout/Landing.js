@@ -18,11 +18,7 @@ const Landing = ({ isAuthenticated, loginRequest, loading }) => {
                 Setup meetings and organize your materials in one place
               </p>
               {!isAuthenticated && !loading && (
-                <a
-                  href='login.html'
-                  className='btn btn-lg btn-info mt-5'
-                  onClick={preventDefault(loginRequest)}
-                >
+                <a href='login.html' className='btn btn-lg btn-info mt-5' onClick={preventDefault(loginRequest)}>
                   Login
                 </a>
               )}

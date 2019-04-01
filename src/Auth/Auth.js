@@ -54,13 +54,13 @@ class Auth {
       this.auth0.checkSession({}, (err, authResult) => {
         console.log('[renewSession] renewing...')
         if (err) {
-          reject(`[renewSession] failed. ${err}`)
+          reject(err)
         } else if (authResult && authResult.accessToken && authResult.idToken) {
           console.log('[renewSession] success.')
           this.setSession(authResult)
           resolve()
         }
-        reject('[renewSession] failed. Empty authResult from Auth0.')
+        reject(new Error('[renewSession] failed. Empty authResult from Auth0.'))
       })
     })
   }
