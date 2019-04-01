@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/pachoclo/study-group-react-ui.svg?branch=master)](https://travis-ci.com/pachoclo/study-group-react-ui) [![Coverage Status](https://coveralls.io/repos/github/pachoclo/study-group-react-ui/badge.svg?branch=master)](https://coveralls.io/github/pachoclo/study-group-react-ui?branch=master)
+[![Build Status](https://travis-ci.com/pachoclo/study-group-react-ui.svg?branch=master)](https://travis-ci.com/pachoclo/study-group-react-ui) [![Coverage Status](https://coveralls.io/repos/github/pachoclo/study-group-react-ui/badge.svg?branch=master)](https://coveralls.io/github/pachoclo/study-group-react-ui?branch=master) [![Netlify Status](https://api.netlify.com/api/v1/badges/2c7d9096-98be-42e9-956b-ad48be1cde7f/deploy-status)](https://app.netlify.com/sites/vibrant-dubinsky-8d5282/deploys)
 
 # StudyGroups UI
 
