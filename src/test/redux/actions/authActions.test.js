@@ -151,7 +151,8 @@ describe('Auth Action Creators', () => {
 
     it('should dispatch renewSession error & getErrors on session renewal failure', async () => {
       // mock authClient (with Profile) -> renewSession call returns a rejected promise
-      const elRejected = Promise.reject('auth0 crapped out')
+      const expectedError = new Error('auth0 crapped out')
+      const elRejected = Promise.reject(expectedError)
       authClient.renewSession = jest.fn(() => elRejected)
 
       // mock dispatch
@@ -172,7 +173,7 @@ describe('Auth Action Creators', () => {
       } catch (error) {
         // check that it dispatches renewSession & getErrors with the right payload
         expect(dispatchMock).toHaveBeenCalledWith({ type: authActions.RENEW_SESSION_ERROR })
-        expect(dispatchMock).toHaveBeenCalledWith(getErrors('auth0 crapped out'))
+        expect(dispatchMock).toHaveBeenCalledWith(getErrors(expectedError))
       }
     })
   })
