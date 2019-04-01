@@ -1,6 +1,7 @@
 
 
 # StudyGroups UI
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/592bf81bffa74495816e8650549c5dfb)](https://app.codacy.com/app/pachoclo/study-group-react-ui?utm_source=github.com&utm_medium=referral&utm_content=pachoclo/study-group-react-ui&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/pachoclo/study-group-react-ui.svg?branch=master)](https://travis-ci.com/pachoclo/study-group-react-ui) [![Coverage Status](https://coveralls.io/repos/github/pachoclo/study-group-react-ui/badge.svg?branch=master)](https://coveralls.io/github/pachoclo/study-group-react-ui?branch=master) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com) [![Netlify Status](https://api.netlify.com/api/v1/badges/2c7d9096-98be-42e9-956b-ad48be1cde7f/deploy-status)](https://app.netlify.com/sites/vibrant-dubinsky-8d5282/deploys)
 > [Trello Board](https://trello.com/b/MTeujOJM/studygroup-kanban)
 
