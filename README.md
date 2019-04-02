@@ -1,20 +1,22 @@
-# StudyGroups UI
-[![Build Status](https://travis-ci.com/pachoclo/study-group-react-ui.svg?branch=master)](https://travis-ci.com/pachoclo/study-group-react-ui) [![Coverage Status](https://coveralls.io/repos/github/pachoclo/study-group-react-ui/badge.svg?branch=master)](https://coveralls.io/github/pachoclo/study-group-react-ui?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f001420c6ca24295993e658e521aefd5)](https://www.codacy.com/app/pachoclo/study-group-react-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pachoclo/study-group-react-ui&amp;utm_campaign=Badge_Grade) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)  
+# StudyGroup UI
+
+[![Build Status](https://travis-ci.com/pachoclo/study-group-react-ui.svg?branch=master)](https://travis-ci.com/pachoclo/study-group-react-ui) [![Coverage Status](https://coveralls.io/repos/github/pachoclo/study-group-react-ui/badge.svg?branch=master)](https://coveralls.io/github/pachoclo/study-group-react-ui?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f001420c6ca24295993e658e521aefd5)](https://www.codacy.com/app/pachoclo/study-group-react-ui?utm_source=github.com&utm_medium=referral&utm_content=pachoclo/study-group-react-ui&utm_campaign=Badge_Grade) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2c7d9096-98be-42e9-956b-ad48be1cde7f/deploy-status)](https://app.netlify.com/sites/vibrant-dubinsky-8d5282/deploys)
+
 > [Trello Board](https://trello.com/b/MTeujOJM/studygroup-kanban)
 
 ## Tech Stack
 
--  [React](https://reactjs.org/docs/getting-started.html)
--  [React Hooks](https://reactjs.org/docs/hooks-intro.html)
--  [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
--  [Redux](https://react-redux.js.org/)
--  [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
--  [Jest](https://jestjs.io/)
--  [Enzyme](https://github.com/airbnb/enzyme)
--  [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
--  [Auth0](https://github.com/auth0/auth0.js#readme)
+- [React](https://reactjs.org/docs/getting-started.html)
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
+- [Redux](https://react-redux.js.org/)
+- [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
+- [Jest](https://jestjs.io/)
+- [Enzyme](https://github.com/airbnb/enzyme)
+- [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
+- [Auth0](https://github.com/auth0/auth0.js#readme)
 
 ---
 
@@ -60,13 +62,13 @@ Your app is ready to be deployed!
 ### build
 
 ```bash
-> docker build -t studygroups-ui .
+> docker build -t studygroup-ui .
 ```
 
 ### run
 
 ```bash
-> docker run --rm -p 3000:80 studygroups-ui
+> docker run --rm -p 3000:80 studygroup-ui
 ```
 
 → Access the UI at [http://localhost:3000](http://localhost:3000) 🙌
