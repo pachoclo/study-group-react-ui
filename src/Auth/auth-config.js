@@ -1,9 +1,9 @@
 export const AUTH_CONFIG = {
-  domain: 'studygroupmeetings.auth0.com',
-  clientId: 'VGnBhiFYhemHHVjLfBxAc5jAPqIPDMbp',
-  callbackUrl: 'http://localhost:3000/loginCallback',
+  domain: process.env.REACT_APP_AUTH_DOMAIN,
+  audience: process.env.REACT_APP_AUTH_AUDIENCE,
+  clientId: process.env.REACT_APP_AUTH_CLIENT_ID,
+  callbackUrl: process.env.REACT_APP_AUTH_CALLBACK_URL,
   responseType: 'id_token token',
-  audience: 'studygroupmeetings.com',
   scope: 'openid profile email',
-  loginReturnToUrl: 'http://localhost:3000'
+  loginReturnToUrl: process.env.REACT_APP_AUTH_RETURN_URL
 }
