@@ -86,7 +86,8 @@ describe('Auth Action Creators', () => {
 
     it('should dispatch loginError & getErrors on auth handling failure', async () => {
       // mock authClient (with Profile) -> handleAuthentication call returns a rejected promise
-      const elRejected = Promise.reject('auth0 crapped out')
+      const expectedError = new Error('auth0 crapped out')
+      const elRejected = Promise.reject(expectedError)
       authClient.handleAuthentication = jest.fn(() => elRejected)
 
       // mock dispatch
@@ -107,7 +108,7 @@ describe('Auth Action Creators', () => {
       } catch (error) {
         // check that it dispatches renewSession & getErrors with the right payload
         expect(dispatchMock).toHaveBeenCalledWith({ type: authActions.LOGIN_ERROR })
-        expect(dispatchMock).toHaveBeenCalledWith(getErrors('auth0 crapped out'))
+        expect(dispatchMock).toHaveBeenCalledWith(getErrors(expectedError))
       }
     })
   })
