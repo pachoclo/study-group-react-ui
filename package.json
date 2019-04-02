@@ -1,6 +1,6 @@
 {
   "name": "study-group-react-ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://vibrant-dubinsky-8d5282.netlify.com/",
   "private": true,
   "dependencies": {
@@ -23,7 +23,7 @@
     "test": "react-scripts test --silent",
     "coverage": "react-scripts test --coverage --silent",
     "cov": "react-scripts test --coverage --silent",
-    "coveralls": "react-scripts test --coverage && cat ./coverage/lcov.info | coveralls",
+    "coveralls": "react-scripts test --coverage --silent && cat ./coverage/lcov.info | coveralls",
     "eject": "react-scripts eject"
   },
   "browserslist": [
@@ -52,8 +52,8 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 85,
-        "functions": 85,
+        "branches": 80,
+        "functions": 80,
         "lines": 85,
         "statements": 85
       }
