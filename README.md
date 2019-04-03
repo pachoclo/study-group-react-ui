@@ -59,13 +59,30 @@ Your app is ready to be deployed!
 
 ## Docker
 
-### build
+### Environment Variables
+
+You need to override the production env variables to match your deployment/testing environment.
+
+- Create a copy of `.env.production` file and rename it to `.env.production.local`:
 
 ```bash
+> cp .env.production .env.production.local
+```
+
+> _Note_: any .env\*.local file will be ignored by GIT
+
+- Add your env variables to `.env.production.local`
+
+`.env.production.local` will take precedence over .env.production when building.
+
+### Build
+
+```bash
+> npm run build
 > docker build -t studygroup-ui .
 ```
 
-### run
+### Run
 
 ```bash
 > docker run --rm -p 3000:80 studygroup-ui
