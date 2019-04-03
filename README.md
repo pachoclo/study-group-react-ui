@@ -63,7 +63,7 @@ Your app is ready to be deployed!
 
 You need to override the production env variables to match your deployment/testing environment.
 
-- Create a copy of `.env.production` file and rename it to `.env.production.local`:
+Create a copy of `.env.production` file and rename it to `.env.production.local`:
 
 ```bash
 > cp .env.production .env.production.local
@@ -71,7 +71,7 @@ You need to override the production env variables to match your deployment/testi
 
 > _Note_: any .env\*.local file will be ignored by GIT
 
-- Add your env variables to `.env.production.local`
+Add your env variables to `.env.production.local`
 
 `.env.production.local` will take precedence over .env.production when building.
 
@@ -85,7 +85,7 @@ You need to override the production env variables to match your deployment/testi
 ### Run
 
 ```bash
-> docker run --rm -p 3000:80 studygroup-ui
+> docker run --rm -p 80:80 studygroup-ui
 ```
 
-→ Access the UI at [http://localhost:3000](http://localhost:3000) 🙌
+→ Now you can access the UI 🙌
