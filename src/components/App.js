@@ -9,19 +9,21 @@ import LoginCallback from './LoginCallback'
 import Navbar from './layout/Navbar'
 import ErrorAlert from './layout/ErrorAlert'
 import Landing from './layout/Landing'
-import TopLevelLoader from './TopLevelLoader'
+import Loader from './LoaderContainer'
+import { debug } from '../util'
 
 function App ({ renewSession, error }) {
   useEffect(() => {
     // if the user hasn't logged out, try to renew the session
+    debug('renewing session')
     authClient.isLoggedIn() && renewSession()
-  })
+  }, [])
 
   return (
     <Router>
       <>
         <Navbar />
-        <TopLevelLoader />
+        <Loader />
         <div className='{//container}'>
           {error.err && <ErrorAlert error={error.err} followUp={error.followUp} />}
           <Route exact path='/' component={Landing} />

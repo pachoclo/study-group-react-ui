@@ -1,5 +1,6 @@
 import auth0 from 'auth0-js'
 import { AUTH_CONFIG } from './auth-config'
+import { debug } from '../util'
 
 class Auth {
   accessToken
@@ -41,7 +42,7 @@ class Auth {
   }
 
   setSession = authResult => {
-    console.log(`Auth: ${JSON.stringify(authResult, null, 2)}`)
+    debug(`Access Token: ${authResult.accessToken}`)
     this.accessToken = authResult.accessToken
     this.idToken = authResult.idToken
     this.profile = authResult.idTokenPayload
@@ -52,11 +53,10 @@ class Auth {
   renewSession = () => {
     return new Promise((resolve, reject) => {
       this.auth0.checkSession({}, (err, authResult) => {
-        console.log('[renewSession] renewing...')
         if (err) {
           reject(err)
-        } else if (authResult && authResult.accessToken && authResult.idToken) {
-          console.log('[renewSession] success.')
+        }
+        if (authResult && authResult.accessToken && authResult.idToken) {
           this.setSession(authResult)
           resolve()
         }
