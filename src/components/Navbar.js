@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loginRequest, logoutRequest } from '../../redux/actions/authActions'
-import { preventDefault } from '../../util'
+import { loginRequest, logoutRequest } from '../redux/actions/authActions'
+import { preventDefault } from '../util'
 import { Link } from 'react-router-dom'
 
 const Navbar = ({ isAuthenticated, loginRequest, logoutRequest, avatarUrl, nickname }) => (

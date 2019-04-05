@@ -1,5 +1,5 @@
 import React from 'react'
-import ErrorAlert from '../../../components/layout/ErrorAlert'
+import ErrorAlert from '../../components/ErrorAlert'
 import { shallow } from 'enzyme'
 
 describe('ErrorAlert Test', () => {

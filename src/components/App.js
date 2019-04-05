@@ -6,13 +6,13 @@ import { renewSession } from '../redux/actions/authActions'
 import '../App.css'
 import authClient from '../Auth/Auth'
 import LoginCallback from './LoginCallback'
-import Navbar from './layout/Navbar'
-import ErrorAlert from './layout/ErrorAlert'
-import Landing from './layout/Landing'
-import Loader from './LoaderContainer'
+import Navbar from './Navbar'
+import ErrorAlert from './ErrorAlert'
+import Landing from './Landing'
+import LoaderContainer from './LoaderContainer'
 import { debug } from '../util'
 
-function App ({ renewSession, error }) {
+export function App ({ renewSession, error }) {
   useEffect(() => {
     // if the user hasn't logged out, try to renew the session
     debug('renewing session')
@@ -23,7 +23,7 @@ function App ({ renewSession, error }) {
     <Router>
       <>
         <Navbar />
-        <Loader />
+        <LoaderContainer />
         <div className='{//container}'>
           {error.err && <ErrorAlert error={error.err} followUp={error.followUp} />}
           <Route exact path='/' component={Landing} />
