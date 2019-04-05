@@ -16,6 +16,11 @@ describe('AutoProgressLoader Test', () => {
     container = null
   })
 
+  it('should render correctly with default state', () => {
+    const component = shallow(<AutoProgressLoader />)
+    expect(component).toMatchSnapshot()
+  })
+
   it('should trigger setInterval and clearInterval', () => {
     jest.useFakeTimers()
     let component
