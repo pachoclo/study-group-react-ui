@@ -5,7 +5,7 @@ import { loginRequest, logoutRequest } from '../redux/actions/authActions'
 import { preventDefault } from '../util'
 import { Link } from 'react-router-dom'
 
-const Navbar = ({ isAuthenticated, loginRequest, logoutRequest, avatarUrl, nickname }) => (
+export const Navbar = ({ isAuthenticated, loginRequest, logoutRequest, avatarUrl, nickname }) => (
   <nav className='navbar navbar-expand-sm navbar-dark bg-dark'>
     <div className='container'>
       <Link className='navbar-brand' to='/'>
