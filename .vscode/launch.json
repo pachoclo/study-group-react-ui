@@ -5,15 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Test debug",
       "type": "node",
-      "name": "vscode-jest-tests",
       "request": "launch",
-      "args": ["test", "--runInBand"],
-      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
+      "args": ["test", "--runInBand", "--no-watch"],
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
-      "protocol": "inspector"
+      "env": {
+        "CI": "true"
+      }
     }
   ]
 }

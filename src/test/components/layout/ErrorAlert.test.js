@@ -4,7 +4,7 @@ import { shallow } from 'enzyme'
 
 describe('ErrorAlert Test', () => {
   it('should render correctly', () => {
-    const component = shallow(<ErrorAlert error={{ error: 'elError' }} />)
+    const component = shallow(<ErrorAlert error={'elError'} />)
     expect(component).toMatchSnapshot()
   })
 })
