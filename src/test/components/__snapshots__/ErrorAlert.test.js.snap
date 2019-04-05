@@ -8,7 +8,9 @@ exports[`ErrorAlert Test should render correctly 1`] = `
   <i
     className="icon-left fas fa-exclamation-triangle mr-3"
   />
-  <strong />
+  <strong>
+    elError
+  </strong>
    
   <span
     className="ml-2"

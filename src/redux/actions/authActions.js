@@ -61,15 +61,7 @@ export const renewSession = () => dispatch => {
     .renewSession()
     .then(() => {
       setAuthToken(authClient.getAccessToken())
-      const { nickname, name, email, picture } = authClient.getProfile()
-      dispatch(
-        loginSuccess({
-          nickname,
-          name,
-          email,
-          picture
-        })
-      )
+      dispatch(loginSuccess(authClient.getProfile()))
     })
     .catch(err => {
       dispatch(renewSessionError())

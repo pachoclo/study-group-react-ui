@@ -1,4 +1,4 @@
-import { preventDefault, setAuthToken } from '../../util'
+import { preventDefault, setAuthToken, debug } from '../../util'
 import axios from 'axios'
 
 describe('Util functions Test', () => {
@@ -33,6 +33,15 @@ describe('Util functions Test', () => {
     it("should unset axios' Authorization header if token is null ", () => {
       setAuthToken()
       expect(axios.defaults.headers.common['Authorization']).toBeUndefined()
+    })
+  })
+
+  describe('debug() test', () => {
+    it('should console log only when in dev mode', () => {
+      const consoleLogSpy = jest.spyOn(console, 'log')
+      process.env.NODE_ENV = 'development'
+      debug('el log message')
+      expect(consoleLogSpy).toHaveBeenCalled()
     })
   })
 })

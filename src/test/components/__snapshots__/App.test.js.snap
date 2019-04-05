@@ -1,0 +1,238 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Test should attempt to renewSession if the user is logged in 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(App)>
+    <App
+      error={Object {}}
+      renewSession={[Function]}
+    >
+      <BrowserRouter>
+        <Router
+          history={
+            Object {
+              "action": "POP",
+              "block": [Function],
+              "createHref": [Function],
+              "go": [Function],
+              "goBack": [Function],
+              "goForward": [Function],
+              "length": 1,
+              "listen": [Function],
+              "location": Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+                "state": undefined,
+              },
+              "push": [Function],
+              "replace": [Function],
+            }
+          }
+        >
+          <navbar-mock />
+          <loader-container-mock />
+          <div
+            className="{//container}"
+          >
+            <Route
+              component="landing-mock"
+              exact={true}
+              path="/"
+            >
+              <landing-mock
+                history={
+                  Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "/",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  }
+                }
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                    "state": undefined,
+                  }
+                }
+                match={
+                  Object {
+                    "isExact": true,
+                    "params": Object {},
+                    "path": "/",
+                    "url": "/",
+                  }
+                }
+              />
+            </Route>
+            <Route
+              component="login-callback-mock"
+              path="/loginCallback"
+            />
+          </div>
+        </Router>
+      </BrowserRouter>
+    </App>
+  </Connect(App)>
+</Provider>
+`;
+
+exports[`App Test should render an error alert if an error occurred 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(App)>
+    <App
+      error={
+        Object {
+          "err": "EL TERRIBLE ERROR",
+        }
+      }
+      renewSession={[Function]}
+    >
+      <BrowserRouter>
+        <Router
+          history={
+            Object {
+              "action": "POP",
+              "block": [Function],
+              "createHref": [Function],
+              "go": [Function],
+              "goBack": [Function],
+              "goForward": [Function],
+              "length": 1,
+              "listen": [Function],
+              "location": Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+                "state": undefined,
+              },
+              "push": [Function],
+              "replace": [Function],
+            }
+          }
+        >
+          <navbar-mock />
+          <loader-container-mock />
+          <div
+            className="{//container}"
+          >
+            <ErrorAlert
+              error="EL TERRIBLE ERROR"
+            >
+              <div
+                className="alert alert-danger alert-dismissible mb-0"
+                role="alert"
+              >
+                <i
+                  className="icon-left fas fa-exclamation-triangle mr-3"
+                />
+                <strong>
+                  EL TERRIBLE ERROR
+                </strong>
+                 
+                <span
+                  className="ml-2"
+                />
+                <button
+                  aria-label="Close"
+                  className="close"
+                  data-dismiss="alert"
+                  type="button"
+                >
+                  <span
+                    aria-hidden="true"
+                  >
+                    ×
+                  </span>
+                </button>
+              </div>
+            </ErrorAlert>
+            <Route
+              component="landing-mock"
+              exact={true}
+              path="/"
+            >
+              <landing-mock
+                history={
+                  Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "/",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  }
+                }
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                    "state": undefined,
+                  }
+                }
+                match={
+                  Object {
+                    "isExact": true,
+                    "params": Object {},
+                    "path": "/",
+                    "url": "/",
+                  }
+                }
+              />
+            </Route>
+            <Route
+              component="login-callback-mock"
+              path="/loginCallback"
+            />
+          </div>
+        </Router>
+      </BrowserRouter>
+    </App>
+  </Connect(App)>
+</Provider>
+`;

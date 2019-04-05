@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`LoginCallback Test should redirect if url does not contain the token 1`] = `
+<Redirect
+  push={true}
+  to="/"
+/>
+`;
+
 exports[`LoginCallback Test should render a redirect if the user is authenticated 1`] = `
 <Redirect
   push={true}

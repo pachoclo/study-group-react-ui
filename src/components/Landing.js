@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { preventDefault } from '../../util'
-import { loginRequest } from '../../redux/actions/authActions'
+import { preventDefault } from '../util'
+import { loginRequest } from '../redux/actions/authActions'
 
-const Landing = ({ isAuthenticated, loginRequest, loading }) => {
+export const Landing = ({ isAuthenticated, loginRequest, loading }) => {
   return (
     <div className='landing'>
       <div className='dark-overlay landing-inner text-light'>

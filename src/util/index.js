@@ -23,3 +23,14 @@ export const setAuthToken = token => {
     delete axios.defaults.headers.common['Authorization']
   }
 }
+
+/**
+ * Logs message to console ONLY in development mode
+ *
+ * @param {string} message to log
+ */
+export const debug = message => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(message)
+  }
+}

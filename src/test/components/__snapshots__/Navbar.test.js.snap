@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landing Test should render correctly 1`] = `
+<nav
+  className="navbar navbar-expand-sm navbar-dark bg-dark"
+>
+  <div
+    className="container"
+  >
+    <Link
+      className="navbar-brand"
+      to="/"
+    >
+      StudyGroup
+    </Link>
+    <button
+      className="navbar-toggler"
+      data-target="#mobile-nav"
+      data-toggle="collapse"
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse"
+      id="mobile-nav"
+    >
+      <ul
+        className="navbar-nav ml-auto"
+      >
+        <li
+          className="nav-item"
+        >
+          <a
+            className="nav-link"
+            href="/login"
+            onClick={[Function]}
+          >
+            Login
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`Landing Test should render the avatar (and menu) component if authenticated 1`] = `
+<nav
+  className="navbar navbar-expand-sm navbar-dark bg-dark"
+>
+  <div
+    className="container"
+  >
+    <Link
+      className="navbar-brand"
+      to="/"
+    >
+      StudyGroup
+    </Link>
+    <button
+      className="navbar-toggler"
+      data-target="#mobile-nav"
+      data-toggle="collapse"
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse"
+      id="mobile-nav"
+    >
+      <ul
+        className="navbar-nav ml-auto"
+      >
+        <li
+          className="nav-item"
+        >
+          <Link
+            className="nav-link"
+            to="/groups"
+          >
+            Groups
+          </Link>
+        </li>
+        <div
+          className="dropdown"
+        >
+          <img
+            aria-expanded="false"
+            aria-haspopup="true"
+            className="rounded-circle avatar-img"
+            data-toggle="dropdown"
+            id="dropdownMenu2"
+          />
+          <div
+            aria-labelledby="dropdownMenu2"
+            className="dropdown-menu"
+          >
+            <h6
+              className="dropdown-header"
+            />
+            <div
+              className="dropdown-divider"
+            />
+            <a
+              className="dropdown-item"
+              href="/logout"
+              onClick={[Function]}
+            >
+              Logout
+            </a>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+`;

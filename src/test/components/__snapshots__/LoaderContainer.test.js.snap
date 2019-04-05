@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoaderContainer Test should render an AutoProgressLoader if loading 1`] = `<AutoProgressLoader />`;
+
+exports[`LoaderContainer Test should reuturn null if not loading 1`] = `""`;
