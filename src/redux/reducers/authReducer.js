@@ -32,6 +32,7 @@ const authReducer = (state = initialState, action) => {
       }
 
     case auth.LOGIN_ERROR:
+    case auth.RENEW_SESSION_ERROR:
     case auth.LOGOUT_ERROR:
       return {
         authenticated: false,
