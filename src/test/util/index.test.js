@@ -27,7 +27,7 @@ describe('Util functions Test', () => {
     it("should set axios' Authorization header if a token is given", () => {
       const superToken = 'elSuperAuthToken'
       setAuthToken(superToken)
-      expect(axios.defaults.headers.common['Authorization']).toEqual(superToken)
+      expect(axios.defaults.headers.common['Authorization']).toEqual(`Bearer ${superToken}`)
     })
 
     it("should unset axios' Authorization header if token is null ", () => {
